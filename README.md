@@ -1,21 +1,33 @@
-EpiCom
-======
+#EpiCom
 
 Push video/presentation on your tv with a Raspberry PI from your pc
 
-INSTALL
-=======
+#CONTENTS
 
-RPI install
-------------
+ - [About](#about)
+ - [Install](#install)
+  - [RPI install](#rpi-install)
+  - [Server install](#server-install)
 
-Copy the folder 'arm' on your RPI, go into it, then launch:
+#About
 
-./configure.sh
+This project contain:
+ - Systemes files to configure your RPI
+ - Client to launch video, prensentation on your RPI
+ - Server to control your RPI from your pc
+ - Web interface to manage your media
+ - Web interface to create presentation
 
-Server install
---------------
+#INSTALL
 
-On your pc, go into the folder 'server', then launch:
+##RPI install
 
-./configure.sh
+Copy the folder *arm* on your RPI, go into it, then launch:
+
+    ./configure.sh
+
+##Server install
+
+On your pc, go into the folder *server*, then launch:
+
+    ./configure.sh
