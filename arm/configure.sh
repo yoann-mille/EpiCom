@@ -1,13 +1,13 @@
 #!/bin/sh
 ## configure.sh for EpiCom
 ## 
-## Git project https://github.com/yupin/EpiCom.git
+## Git project https://github.com/yoann-mille/EpiCom.git
 ## 
 ## Made by yoann mille
 ## Email   <yoann.mille@epitech.net>
 ## 
-## Started on  Sat Apr 19 20:33:11 2014 yoann mille
-## Last update Sat Apr 19 21:32:14 2014 yoann mille
+## Started on  Sun Apr 20 00:20:03 2014 yoann mille
+## Last update Sun Apr 20 12:04:42 2014 yoann mille
 ##
 
 ##################################
