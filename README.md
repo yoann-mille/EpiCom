@@ -22,12 +22,8 @@ This project contain:
 
 ##RPI install
 
-Copy the folder *arm* on your RPI, go into it, then launch:
-
-    ./configure.sh
+    ./configure.sh -rpi
 
 ##Server install
 
-On your pc, go into the folder *server*, then launch:
-
-    ./configure.sh
+    ./configure.sh -server
