@@ -7,14 +7,14 @@
 ** Email   <yoann.mille@epitech.net>
 ** 
 ** Started on  Mon Apr 21 18:49:51 2014 yoann mille
-** Last update Mon Apr 21 20:24:31 2014 yoann mille
+Last update Tue Apr 22 12:02:14 2014 
 */
 
 var express = require('express')
 , routes = require('./routes')
-, user = require('./routes/user')
 , http = require('http')
 , path = require('path')
+, omx = require('omxcontrol')
 , io = require("socket.io");
 
 var app = express();
@@ -36,7 +36,6 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
@@ -45,11 +44,38 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 var ioPres = io.listen(server);
 
 ioPres.sockets.on('connection', function (socket) {
-    /* put here the signal from the server  */
-    /*
-      socket.emit('play');
-      socket.emit('stop');
-    */
-    socket.emit('pause');
-    socket.emit('unpause');
+});
+
+var ioServer = io.listen(4242);
+
+ioServer.set('log level', 1);
+ioServer.sockets.on('connection', function (socket) {
+    console.log('connection');
+    /****************************/
+    /*		Video		*/
+    /****************************/
+    socket.on('play video', function (file) {
+	console.log('[server] Emit : PLAY VIDEO\n\tFILE : ', file);
+	omx.start(file);
+    });
+    socket.on('stop video', function () {
+	console.log('[server] Emit : STOP VIDEO');
+	omx.quit();
+    });
+    socket.on('pause video', function () {
+	console.log('[server] Emit : PAUSE VIDEO');
+	omx.pause();
+    });
+    socket.on('unpause video', function () {
+	console.log('[server] Emit : UNPAUSE VIDEO');
+	omx.pause();
+    });
+
+    /************************************/
+    /*		Presentation		*/
+    /************************************/
+    socket.on('pause presentation', function () {
+	console.log('[server] Emit : PAUSE PRESENTATION');
+	ioPres.sockets.emit('pause');
+    });
 });
