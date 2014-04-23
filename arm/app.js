@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.net>
 ** 
 ** Started on  Mon Apr 21 18:49:51 2014 yoann mille
-Last update Tue Apr 22 12:02:14 2014 
+** Last update Wed Apr 23 14:18:13 2014 yoann mille
 */
 
 var express = require('express')
@@ -77,5 +77,17 @@ ioServer.sockets.on('connection', function (socket) {
     socket.on('pause presentation', function () {
 	console.log('[server] Emit : PAUSE PRESENTATION');
 	ioPres.sockets.emit('pause');
+    });
+    socket.on('unpause presentation', function () {
+	console.log('[server] Emit : UNPAUSE PRESENTATION');
+	ioPres.sockets.emit('unpause');
+    });
+    socket.on('play presentation', function (file) {
+	console.log('[server] Emit : PLAY PRESENTATION ' + file);
+	//	ioPres.sockets.emit('play');
+    });
+    socket.on('stop presentation', function () {
+	console.log('[server] Emit : STOP PRESENTATION');
+	//	ioPres.sockets.emit('pause');
     });
 });
