@@ -1,0 +1,20 @@
+include layoutTop
+  
+body
+  div(style="display: inline-block; margin: 0px 50px;")
+    label(style="text-align:center;")
+      h2 Video
+    button(style="width:100px;height:50px;margin:10px;", onclick="playVideo();") play
+    button(style="width:100px;height:50px;margin:10px;", onclick="stopVideo();") stop
+    button(style="width:100px;height:50px;margin:10px;", onclick="pauseVideo();") pause
+    button(style="width:100px;height:50px;margin:10px;", onclick="unpauseVideo();") unpause
+  
+  div(style="display: inline-block;")
+    label
+      h2 Presentation
+    button(style="width:100px;height:50px;margin:10px;", onclick="playPres();") play
+    button(style="width:100px;height:50px;margin:10px;", onclick="stopPres();") stop
+    button(style="width:100px;height:50px;margin:10px;", onclick="pausePres();") pause
+    button(style="width:100px;height:50px;margin:10px;", onclick="unpausePres();") unpause
+
+include layoutBottom
