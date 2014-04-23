@@ -2,7 +2,6 @@ jQuery(function(){
 
     var form_login_click = false;
     $('form.form-login').submit(function(){
-	console.log('damned');
 	if (form_login_click){
 	    return false;
 	}

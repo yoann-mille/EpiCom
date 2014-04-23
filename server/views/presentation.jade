@@ -1,0 +1,13 @@
+include layoutTop
+  
+body
+  include navbar
+  div.container
+    button(style="width:100px;height:50px;margin:10px;", onclick="playPres();") play
+    button(style="width:100px;height:50px;margin:10px;", onclick="stopPres();") stop
+    button(style="width:100px;height:50px;margin:10px;", onclick="pausePres();") pause
+    button(style="width:100px;height:50px;margin:10px;", onclick="unpausePres();") unpause
+
+  script(src="js/utils.js")
+  script(src="js/presentation.js")
+include layoutBottom

@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.net>
 ** 
 ** Started on  Tue Apr 22 09:51:40 2014 yoann mille
-** Last update Wed Apr 23 10:27:16 2014 yoann mille
+** Last update Wed Apr 23 17:25:50 2014 yoann mille
 */
 
 var express = require('express')
@@ -46,10 +46,29 @@ app.configure('development', function(){
 
 db.init(config.sql.user, config.sql.password, config.sql.database, config.sql.host);
 
+app.get('/', routes.index);
+
+app.get(	'/login', routes.login);
+app.get(	'/video', routes.video);
+app.get(	'/presentation', routes.presentation);
+
+app.use(function(req, res){
+//  res.send('what???', 404);
+    res.status(404).send('404');
+});
+
+/*
 app.get('/', routes.authentification.session, routes.index);
 
 app.get(	'/login', routes.login);
 app.post(	'/login', routes.authentification.getToken, routes.user.update, routes.user.getCurrentUser, routes.authentification.setSession);
+
+app.get(	'/logout', routes.authentification.session, routes.authentification.unsetSession);
+
+app.get(	'/video', routes.authentification.session, routes.video);
+
+app.get(	'/video', routes.authentification.session, routes.presentation);
+*/
 
 var server = http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));

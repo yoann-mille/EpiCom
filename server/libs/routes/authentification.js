@@ -102,7 +102,6 @@ module.exports = function() {
 		Epitech.token({ login: req.session.user.login, token: req.session.user.token },
 			      function(err, ok){
 				  if (err){
-				      //res.error(err);
 				      res.redirect('/login');
 				  } else if (!ok){
 				      res.redirect('/login');
