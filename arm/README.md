@@ -1,6 +1,6 @@
 #Configuration
 
-#Carte SD
+#Carte µSD 9Gb minimum
 
 Télécharger l'image de debian pour l'A20 [ici](https://drive.google.com/file/d/0B-bAEPML8fwlOWVVcUxnSTE4YTg/edit)
 
