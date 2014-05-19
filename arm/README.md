@@ -27,16 +27,28 @@ Ecrire l'image sur la carte:
 		*dd bs=4M oflag=sync if=nom_de_l_image.img of=/dev/sdX*
 	
 	- Redimensionner au besoin [video](https://www.youtube.com/watch?v=R4VovMDnsIE)
+		
 		*fdisk -uc /dev/sdX*
+
 			*$> p*
+
 			*$> d*
+
 				*Partition number : 2*
+
 			*$> n*
+
 				*Commande action : p*
+
 				*Partition number : 2*
+
 				*First sector : copier / coller la taille indiquée dans la colonne start*
+
 				*Last sector : taper entrer pour la taille max*
+
 			*$> w*
+
 		*reboot*
+
 		*resize2fs -p /dev/sdbX*
 		
