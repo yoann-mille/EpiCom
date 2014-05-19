@@ -38,21 +38,13 @@ Ecrire l'image sur la carte:
 				*Command (m for help): p*
 					
 				*Disk /dev/sdb: 7969 MB, 7969177600 bytes, 15564800 sectors*
-				
 				*Units = sectors of 1 * 512 = 512 bytes*
-				
 				*Sector size (logical/physical): 512 bytes / 512 bytes*
-				
 				*I/O size (minimum/optimal): 512 bytes / 512 bytes*
-				
 				*Disk label type: dos*
-				
 				*Disk identifier: 0x6f20736b*
-					
 				*Device Boot      Start         End      Blocks   Id  System*
-				
 				*/dev/sdb1            2048       34815       16384   83  Linux*
-				
 				*/dev/sdb2           34816    15564799     7764992   83  Linux*
 					
 				*Command (m for help): d*
