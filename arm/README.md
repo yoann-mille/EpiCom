@@ -1,6 +1,6 @@
 #Configuration
 
-#Carte µSD 9Gb minimum
+#Carte µSD 6Gb minimum
 
 Télécharger l'image de debian pour l'A20 [ici](https://drive.google.com/file/d/0B-bAEPML8fwlOWVVcUxnSTE4YTg/edit)
 
@@ -26,4 +26,17 @@ Ecrire l'image sur la carte:
 	
 		*dd bs=4M oflag=sync if=nom_de_l_image.img of=/dev/sdX*
 	
-	- Redimensionner au besoin avec gparted
+	- Redimensionner au besoin [video](https://www.youtube.com/watch?v=R4VovMDnsIE)
+		*fdisk -uc /dev/sdX*
+			*$> p*
+			*$> d*
+				*Partition number : 2*
+			*$> n*
+				*Commande action : p*
+				*Partition number : 2*
+				*First sector : copier / coller la taille indiquée dans la colonne start*
+				*Last sector : taper entrer pour la taille max*
+			*$> w*
+		*reboot*
+		*resize2fs -p /dev/sdbX*
+		
