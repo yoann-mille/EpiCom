@@ -28,6 +28,8 @@ Ecrire l'image sur la carte:
 	
 	- Redimensionner au besoin [video](https://www.youtube.com/watch?v=R4VovMDnsIE)
 		
+		A faire sur la carte directement !!	
+	
 			$>fdisk -uc /dev/sdX
 
 				Welcome to fdisk (util-linux 2.23.2).
