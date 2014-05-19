@@ -24,31 +24,52 @@ Ecrire l'image sur la carte:
 	
 	- Ecrire l'image :
 	
-			*dd bs=4M oflag=sync if=nom_de_l_image.img of=/dev/sdX*
+			*$>dd bs=4M oflag=sync if=nom_de_l_image.img of=/dev/sdX*
 	
 	- Redimensionner au besoin [video](https://www.youtube.com/watch?v=R4VovMDnsIE)
 		
-			*fdisk -uc /dev/sdX*
+			*$>fdisk -uc /dev/sdX*
 
-				*$> p*
+				*Welcome to fdisk (util-linux 2.23.2).*
+					
+				*Changes will remain in memory only, until you decide to write them.*
+				*Be careful before using the write command.*
+					
+				*Command (m for help): p*
+					
+				*Disk /dev/sdb: 7969 MB, 7969177600 bytes, 15564800 sectors*
+				
+				*Units = sectors of 1 * 512 = 512 bytes*
+				
+				*Sector size (logical/physical): 512 bytes / 512 bytes*
+				
+				*I/O size (minimum/optimal): 512 bytes / 512 bytes*
+				
+				*Disk label type: dos*
+				
+				*Disk identifier: 0x6f20736b*
+					
+				*Device Boot      Start         End      Blocks   Id  System*
+				
+				*/dev/sdb1            2048       34815       16384   83  Linux*
+				
+				*/dev/sdb2           34816    15564799     7764992   83  Linux*
+					
+				*Command (m for help): d*
+	
+				*Partition number : 2*
+	
+				*Command (m for help): n*
+	
+				*Partition number : 2*
+	
+				*First sector : 34816*
+	
+				*Last sector : taper entrer pour la taille max*
+	
+				*Command (m for help): w*
 
-				*$> d*
+			*$>reboot*
 
-					*Partition number : 2*
-
-				*$> n*
-
-					*Commande action : p*
-
-					*Partition number : 2*
-
-					*First sector : copier / coller la taille indiquée dans la colonne start*
-
-					*Last sector : taper entrer pour la taille max*
-
-				*$> w*
-
-			*reboot*
-
-			*resize2fs -p /dev/sdbX*
+			*$>resize2fs -p /dev/sdbX*
 		
