@@ -1,0 +1,20 @@
+/*
+** arm_style.css for EpiCom in /server/public/css
+** 
+** Git project https://github.com/yoann-mille/EpiCom.git
+** 
+** Made by yoann mille
+** Email   <yoann.mille@epitech.eu>
+** 
+** Started on  Tue May  6 11:23:31 2014 yoann mille
+** Last update Tue May  6 11:23:41 2014 yoann mille
+*/
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}

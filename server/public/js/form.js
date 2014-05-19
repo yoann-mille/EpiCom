@@ -1,3 +1,15 @@
+/*
+** form.js for EpiCom in /server/public/js
+** 
+** Git project https://github.com/yoann-mille/EpiCom.git
+** 
+** Made by yoann mille
+** Email   <yoann.mille@epitech.eu>
+** 
+** Started on  Tue May  6 11:27:50 2014 yoann mille
+** Last update Tue May  6 11:27:56 2014 yoann mille
+*/
+
 jQuery(function(){
 
     var form_login_click = false;
@@ -66,4 +78,26 @@ jQuery(function(){
 	return false;
     });
 
+    var form_previsualisation_click = false;
+    $('form.form-prev').submit(function(){
+	if (form_previsualisation_click){
+	    return false;
+	}
+	form_previsualisation_click = true;
+	$.ajax({
+	    url: '/prev',
+	    type: 'POST',
+	    data: {},
+	    success: function(){
+		document.location.href = '/media';
+	    },
+	    error: function(err){
+		console.log('TOTO = error', err);
+	    },
+	    complete: function(){
+		form_previsualisation_click = false;
+	    }
+	});
+	return false;
+    });
 });

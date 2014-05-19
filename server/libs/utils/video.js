@@ -1,13 +1,13 @@
 /*
-** socket.js for EpiCom Server
+** video.js for EpiCom in /server/libs/utils
 ** 
 ** Git project https://github.com/yoann-mille/EpiCom.git
 ** 
 ** Made by yoann mille
-** Email   <yoann.mille@epitech.net>
+** Email   <yoann.mille@epitech.eu>
 ** 
-** Started on  Tue Apr 22 10:01:41 2014 yoann mille
-** Last update Tue Apr 22 16:11:54 2014 yoann mille
+** Started on  Tue May  6 11:22:35 2014 yoann mille
+** Last update Tue May  6 11:22:41 2014 yoann mille
 */
 
 module.exports = {

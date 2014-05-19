@@ -1,10 +1,18 @@
-div.container.masthead
+nav.navbar.masthead.container(role="navigation")
   h3.text-muted EpiCom
-  ul.nav.nav-justified
+  ul.nav.nav-bar.nav-justified
     li(class=(title === 'Home' ? 'active' : ''))
       a(href='/') Home
-    li(class=(title === 'Media' ? 'active' : ''))
-      a(href='/media') Media
+    li(class=(title === 'Media' ? 'dropdown active' : 'dropdown'))
+      a.dropdown-toggle(href="#", data-toggle="dropdown") Media
+        b.caret.pull-right(style='margin: 10px 0;')
+      ul.dropdown-menu(role='menu')
+        li
+          a(href="/media?media=images") Images
+        li
+          a(href="/media?media=videos") Video
+        li
+          a(href="/media?media=presentations") Presentation
     li(class=(title === 'Playlist' ? 'active' : ''))
       a(href='/playlist') Playlist
     li(class=(title === 'Presentation' ? 'active' : ''))

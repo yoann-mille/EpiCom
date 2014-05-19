@@ -1,3 +1,15 @@
+/*
+** authentification.js for EpiCom in /server/libs/routes
+** 
+** Git project https://github.com/yoann-mille/EpiCom.git
+** 
+** Made by thomas cholley
+** Email   <thomas.cholley@epitech.eu>
+** 
+** Started on  Tue May  6 11:15:40 2014 yoann mille
+** Last update Tue May  6 11:19:36 2014 yoann mille
+*/
+
 var User = require('../services/user');
 var Epitech = require('../services/epitech');
 

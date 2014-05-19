@@ -3,12 +3,10 @@ include layoutTop
 body
   include navbar
   div.container
-    //(style="display: inline-block; margin: 0px 50px;")
     button(style="width:100px;height:50px;margin:10px;", onclick="playVideo();") play
     button(style="width:100px;height:50px;margin:10px;", onclick="stopVideo();") stop
     button(style="width:100px;height:50px;margin:10px;", onclick="pauseVideo();") pause
     button(style="width:100px;height:50px;margin:10px;", onclick="unpauseVideo();") unpause
 
-  script(src="js/utils.js")
-  script(src="js/video.js")
 include layoutBottom
+  script(src="js/video.js")

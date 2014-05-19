@@ -1,3 +1,14 @@
+/*
+** status.js for EpiCom in /server/libs/utils
+** 
+** Git project https://github.com/yoann-mille/EpiCom.git
+** 
+** Made by thomas cholley
+** Email   <thomas.cholley@epitech.eu>
+** 
+** Started on  Tue May  6 11:21:27 2014 yoann mille
+** Last update Wed May  7 09:45:12 2014 yoann mille
+*/
 
 var res = require('express').response;
 

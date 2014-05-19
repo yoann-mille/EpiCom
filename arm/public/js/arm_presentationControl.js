@@ -1,4 +1,5 @@
 var socket = io.connect("http://localhost:3000");
+
 socket.on('pause', function () {
     Reveal.togglePause();
     console.log('pause');

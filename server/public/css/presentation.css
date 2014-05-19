@@ -1,0 +1,85 @@
+/*
+** presentation.css for EpiCom in /server/public/css
+** 
+** Git project https://github.com/yoann-mille/EpiCom.git
+** 
+** Made by yoann mille
+** Email   <yoann.mille@epitech.eu>
+** 
+** Started on  Tue May  6 11:25:36 2014 yoann mille
+** Last update Wed May 14 14:56:33 2014 yoann mille
+*/
+/*
+pre {
+    margin: 0 0 0 0;
+}
+
+h3.example {
+    margin: 0;
+}*/
+
+.bs-example:after {
+    content: "Exemple SLIDE";
+}
+
+.bs-example {
+    margin: 25px 0 0 0;
+    min-width: 300px;
+}
+
+.container.container-presentation {
+    max-width: 750px;
+}
+
+.container.container-example {
+    max-width: 300px;
+}
+
+.alert-pres {
+    margin: 10px auto;
+}
+
+.form-pres {
+    margin: 0 auto;
+}
+.form-pres .form-pres-heading,
+.form-pres .checkbox {
+    margin-bottom: 10px;
+}
+.form-pres .checkbox {
+    font-weight: normal;
+}
+.form-pres .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-pres .form-control:focus {
+    z-index: 2;
+}
+.form-pres input[type="text"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-pres input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-pres .btn-pres-save {
+    float: right;
+}
+
+.form-pres-headin-slide {
+    max-width: 300px;
+}
+
+.form-pres .btn-pres-new-slide {
+    float: right;
+}

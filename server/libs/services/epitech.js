@@ -1,6 +1,18 @@
+/*
+** epitech.js for EpiCom in /home/yupin/EpiCom/server/libs/services
+** 
+** Git project https://github.com/yoann-mille/EpiCom.git
+** 
+** Made by thomas cholley
+** Email   <thomas.cholley@epitech.eu>
+** 
+** Started on  Tue May  6 11:17:34 2014 yoann mille
+** Last update Tue May  6 11:17:58 2014 yoann mille
+*/
+
 var request = require('request');
 var Tools = require('../utils/tools');
-var config = require('../../config');
+var config = require('../utils/config');
 var User = require('./user');
 
 module.exports = {

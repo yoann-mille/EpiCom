@@ -1,24 +1,25 @@
 /*
-** app.js for EpiCom Server
+** app.js for EpiCom in /server
 ** 
 ** Git project https://github.com/yoann-mille/EpiCom.git
 ** 
 ** Made by yoann mille
-** Email   <yoann.mille@epitech.net>
+** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue Apr 22 09:51:40 2014 yoann mille
-** Last update Wed Apr 23 17:25:50 2014 yoann mille
+** Last update Mon May 19 11:40:19 2014 yoann mille
 */
 
 var express = require('express')
 , routes = require('./libs/routes')()
 , expressValidator = require('express-validator')
-, video = require('./libs/utils/video')
-, presentation = require('./libs/utils/presentation')
 , http = require('http')
 , io = require('socket.io')
 , db = require('mysql-simple')
-, config = require('./config')
+, config = require('./libs/utils/config')
+, video = require('./libs/utils/video')
+, presentation = require('./libs/utils/presentation')
+, media = require('./libs/utils/media')
 , path = require('path');
 
 require('./libs/utils/status');
@@ -49,12 +50,16 @@ db.init(config.sql.user, config.sql.password, config.sql.database, config.sql.ho
 app.get('/', routes.index);
 
 app.get(	'/login', routes.login);
+
 app.get(	'/video', routes.video);
+
 app.get(	'/presentation', routes.presentation);
+app.post(	'/presentation', presentation.createPres, presentation.screenshot.bind({app: app}), routes.viewPres);
+
+app.get(	'/media', media.list, routes.media);
 
 app.use(function(req, res){
-//  res.send('what???', 404);
-    res.status(404).send('404');
+    res.status(404).render('404', {title: '404'});
 });
 
 /*
@@ -84,8 +89,12 @@ var client    = clientio.connect('http://10.18.207.129:4242');
 /* files for tests */
 var file = new Array("/home/pi/stage/media/videoTest.mp4", "/home/pi/stage/media/videoTest.mp4");
 
+admSocket.set('log level', 1);
+
 admSocket.sockets.on('connection', function (socket) {
     /*** Video ***/
+//    socket.on('get newPres', routes.media.newPres);
+
     socket.on('play video', video.play.bind(null, client, file));
     socket.on('stop video', video.stop.bind(null, client));
     socket.on('pause video', video.pause.bind(null, client));
@@ -96,4 +105,10 @@ admSocket.sockets.on('connection', function (socket) {
     socket.on('stop presentation', presentation.stop.bind(null, client));
     socket.on('pause presentation', presentation.pause.bind(null, client));
     socket.on('unpause presentation', presentation.unpause.bind(null, client));
+
+    socket.on('checkPresNameExist', presentation.checkPresNameExist.bind(null, socket));
+
+    /*** Media ***/
+    socket.on('deleteMedia', media.deleteMedia);
+    socket.on('updatePresentation', presentation.updatePresentation.bind({app: app}));
 });

@@ -1,13 +1,13 @@
 /*
-** utils.js for EpiCom Server
+** utils.js for EpiCom in /server/public/js
 ** 
 ** Git project https://github.com/yoann-mille/EpiCom.git
 ** 
 ** Made by yoann mille
-** Email   <yoann.mille@epitech.net>
+** Email   <yoann.mille@epitech.eu>
 ** 
-** Started on  Wed Apr 23 15:59:53 2014 yoann mille
-** Last update Wed Apr 23 15:59:54 2014 yoann mille
+** Started on  Tue May  6 11:28:52 2014 yoann mille
+** Last update Tue May  6 11:28:58 2014 yoann mille
 */
 
 var socket = io.connect('');

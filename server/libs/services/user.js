@@ -1,3 +1,15 @@
+/*
+** user.js for EpiCom in /server/libs/services
+** 
+** Git project https://github.com/yoann-mille/EpiCom.git
+** 
+** Made by yoann mille
+** Email   <yoann.mille@epitech.eu>
+** 
+** Started on  Tue May  6 11:18:40 2014 yoann mille
+** Last update Tue May  6 11:18:48 2014 yoann mille
+*/
+
 var db = require('mysql-simple');
 
 module.exports = {

@@ -1,13 +1,37 @@
 include layoutTop
-  
+
+link(href="components/bootstrap/dist/css/docs.min.css", rel="stylesheet")
+link(href="css/presentation.css", rel="stylesheet")
+
 body
   include navbar
   div.container
-    button(style="width:100px;height:50px;margin:10px;", onclick="playPres();") play
-    button(style="width:100px;height:50px;margin:10px;", onclick="stopPres();") stop
-    button(style="width:100px;height:50px;margin:10px;", onclick="pausePres();") pause
-    button(style="width:100px;height:50px;margin:10px;", onclick="unpausePres();") unpause
+    div.bs-example.pull-left
+      h4.example TITRES
+      pre
+        p h1 Titre
+        p h2 Sous titre
+        p h3 truc a dire
+      h4.example LISTES
+      pre
+        p li toto
+        p li titi
+        p li tutu
+      h4.example IMAGES
+      pre
+        p img nom_de_l_image.jpg
+      img.media-object(src='img/exemple_slide.png', height='250', width='300');
+    div.container.container-presentation.pull-right(id='presContainer')
+      if fileExist
+        div.alert.alert-danger.alert-pres(id='alert pres exist') La présentation existe déjà
+      form.form-pres(id='form pres', method='POST', action='/presentation')
+        h2.form-pres-heading Créez une présentation
+        input.form-control(id='presName', type='text', placeholder='Nom', name='name', required, autofocus, onblur='checkPresNameExist()')
+        div
+          h3.form-pres-heading.form-pres-headin-slide Slide
+          textarea.form-control(rows="10", placeholder='Ecrivez ici le contenu de votre slide', name='slide', required)
+        button.btn.btn-lg.btn-primary(type='button', onclick='addDivSlide()', id='button add slide') Nouvelle slide
+        button.btn.btn-lg.btn-primary.btn-pres-save(type='submit') Sauvegarder
 
-  script(src="js/utils.js")
-  script(src="js/presentation.js")
 include layoutBottom
+script(src='js/presentation.js')

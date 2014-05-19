@@ -1,28 +1,31 @@
 {
-    "name": "EpiCom",
-    "version": "0.0.1",
-    "private": true,
-    "author": {
-	"name": "yoann mille"
-    },
-    "scripts": {
-	"start": "node app.js"
-    },
-    "dependencies": {
-	"express": "~3.3.4",
-	"express-validator": "*",
-	"mysql-simple": "*",
-	"underscore": "*",
-	"jade": "~0.34.0",
-	"socket.io": "~0.9.16",
-	"socket.io-client": "0.9.16"
-    },
-    "devDependencies": {
-	"grunt": "~0.4.1",
-	"grunt-develop": "~0.2.2",
-	"grunt-contrib-watch": "~0.5.3",
-	"request": "~2.27.0",
-	"time-grunt": "~0.1.1",
-	"load-grunt-tasks": "~0.2.0"
-    }
+  "name": "EpiCom",
+  "version": "0.0.1",
+  "private": true,
+  "author": {
+    "name": "yoann mille"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "~3.3.4",
+    "express-validator": "*",
+    "mysql-simple": "*",
+    "underscore": "*",
+    "jade": "~0.34.0",
+    "phantom": "*",
+    "socket.io": "~0.9.16",
+    "socket.io-client": "0.9.16",
+    "fs-extra": "~0.8.1"//,
+//    "jsdom": "0.10.5"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-develop": "~0.2.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "request": "~2.27.0",
+    "time-grunt": "~0.1.1",
+    "load-grunt-tasks": "~0.2.0"
+  }
 }

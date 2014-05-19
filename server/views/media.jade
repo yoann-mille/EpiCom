@@ -1,0 +1,43 @@
+include layoutTop
+  
+link(href="css/media.css", rel="stylesheet")
+  
+body
+  div.container
+  include navbar
+  div.container(id='mediaDiv')
+    if (media == '' || media === 'images')
+      div(id='images')
+        ul.media-list
+          each img in imgs
+            li.media(id= img)
+              button.btn.btn-default.btn-delete-mini.pull-right(type='button', onclick='hideListMedia(\'' + img + '\')')
+                span.glyphicon.glyphicon-remove
+              img.pull-left.media-object.img-rounded(src='media/image/' + img, height='80', width='80');
+              div.media-body
+                h4.media-heading=img
+    if (media === 'videos')
+      div(id='video')
+        ul.media-list
+          each video in videos
+            li.media(id= video)
+              button.btn.btn-default.btn-delete-mini.pull-right(type='button', onclick='hideListMedia(\'' + video + '\')')
+                span.glyphicon.glyphicon-remove
+              img.pull-left.media-object.img-rounded(src='media/video/' + video, height='80', width='80');
+              div.media-body
+                h4.media-heading=video
+    if (media === 'presentations')
+      div(id='pres')
+        ul.media-list
+          each mini in minis
+            li.media(id= mini)
+              button.btn.btn-default.btn-delete-mini.pull-right(type='button', onclick='hideListMedia(\'' + mini + '\')')
+                span.glyphicon.glyphicon-remove
+              button.btn.btn-default.btn-update-mini.pull-right(type='button', onclick='updatePresentation(\'' + mini + '\')') Modifier
+              img.pull-left.media-object.img-rounded(src='media/miniature/' + mini, height='80', width='80');
+              div.media-body
+                h4.media-heading=mini
+    button.btn.btn-lg.btn-primary.pull-right(type='button', onclick='deleteFile(\'' + media + '\')') Sauvegarder
+include layoutBottom
+script(src="components/bootstrap/js/tab.js")
+script(src="js/media.js")
