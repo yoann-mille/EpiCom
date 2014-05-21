@@ -65,5 +65,5 @@ Ecrire l'image sur la carte:
 
 			$>reboot
 
-			$>resize2fs -p /dev/mmcblk0
+			$>resize2fs -p /dev/mmcblk0p2
 		
