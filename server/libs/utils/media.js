@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:20:26 2014 yoann mille
-** Last update Sun May 18 21:26:30 2014 yoann mille
+** Last update Tue May 20 17:14:31 2014 yoann mille
 */
 
 var path = require('./config').path;
@@ -74,7 +74,6 @@ module.exports = {
 			video: video,
 			img: img
 		    };
-		    console.log(mini);
 		    next();
 		});
             });

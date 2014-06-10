@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:21:03 2014 yoann mille
-** Last update Mon May 19 16:38:18 2014 yoann mille
+** Last update Tue May 20 17:16:14 2014 yoann mille
 */
 
 var path = require('./config').path;
@@ -192,15 +192,11 @@ module.exports = {
     /*                                                  */
     /****************************************************/
 
-    updatePresentation: function (name) {
+    updatePresentation: function (req, res) {
 	var fs = require('fs-extra');
-	var jsdom = require('jsdom');
-
-	var pres_template = fs.readFileSync(path.views + 'updatePresentation.jade', 'utf8');
-	var document = jsdom.jsdom(pres_template);
-
 	var file = fs.readFileSync(path.presentation + name.replace('.png', '.jade'), 'utf8');
 	var lines = file.split('\n');
+	
 	var numLine = 0;
 	while (numLine < lines.length && lines[numLine].indexOf('\t\tsection', 0) != 0) {
 	    numLine++;

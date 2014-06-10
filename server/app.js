@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue Apr 22 09:51:40 2014 yoann mille
-** Last update Mon May 19 11:40:19 2014 yoann mille
+** Last update Tue May 20 17:12:54 2014 yoann mille
 */
 
 var express = require('express')
@@ -55,6 +55,7 @@ app.get(	'/video', routes.video);
 
 app.get(	'/presentation', routes.presentation);
 app.post(	'/presentation', presentation.createPres, presentation.screenshot.bind({app: app}), routes.viewPres);
+app.get(	'/updatePresentation', presentation.updatePresentation, routes.updatePresentation);
 
 app.get(	'/media', media.list, routes.media);
 

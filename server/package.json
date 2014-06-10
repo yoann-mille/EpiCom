@@ -17,8 +17,7 @@
     "phantom": "*",
     "socket.io": "~0.9.16",
     "socket.io-client": "0.9.16",
-    "fs-extra": "~0.8.1"//,
-//    "jsdom": "0.10.5"
+    "fs-extra": "~0.8.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
