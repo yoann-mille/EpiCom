@@ -30,7 +30,7 @@ Ecrire l'image sur la carte:
 		
 		A faire sur la carte directement !!	
 	
-			$>fdisk -uc /dev/sdX
+			$>fdisk -uc /dev/mmcblk0
 
 				Welcome to fdisk (util-linux 2.23.2).
 					
@@ -46,8 +46,8 @@ Ecrire l'image sur la carte:
 				Disk label type: dos
 				Disk identifier: 0x6f20736b
 				Device Boot      Start         End      Blocks   Id  System
-				/dev/sdb1            2048       34815       16384   83  Linux
-				/dev/sdb2           34816    15564799     7764992   83  Linux
+				/dev/mmcblk0p1            2048       34815       16384   83  Linux
+				/dev/mmcblk0p2           34816    15564799     7764992   83  Linux
 					
 				Command (m for help): d
 	
@@ -65,5 +65,5 @@ Ecrire l'image sur la carte:
 
 			$>reboot
 
-			$>resize2fs -p /dev/sdbX
+			$>resize2fs -p /dev/mmcblk0p2
 		
