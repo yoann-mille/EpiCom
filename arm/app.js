@@ -7,14 +7,15 @@
 ** Email   <yoann.mille@epitech.net>
 ** 
 ** Started on  Mon Apr 21 18:49:51 2014 yoann mille
-** Last update Wed Jun 18 16:39:59 2014 yoann mille
+** Last update Thu Jun 19 14:11:56 2014 yoann mille
 */
 
 var express = require('express')
 , routes = require('./libs/routes')
 , http = require('http')
 , path = require('path')
-, omx = require('omxcontrol')
+//, omx = require('omxcontrol')
+, vlc = require('./libs/utils/vlc')
 , io = require("socket.io");
 
 var app = express();
@@ -56,11 +57,13 @@ ioServer.sockets.on('connection', function (socket) {
     /****************************/
     socket.on('play video', function (file) {
 	console.log('[server] Emit : PLAY VIDEO\n\tFILE : ', file);
-	omx.start(file);
+//	omx.start(file);
+	vlc.play(file);
     });
     socket.on('stop video', function () {
 	console.log('[server] Emit : STOP VIDEO');
-	omx.quit();
+	vlc.quit();
+//	omx.quit();
     });
     socket.on('pause video', function () {
 	console.log('[server] Emit : PAUSE VIDEO');
