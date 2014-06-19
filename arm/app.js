@@ -1,5 +1,5 @@
 /*
-** app.js for EpiCom ARM
+** app.js for EpiCom /arm
 ** 
 ** Git project https://github.com/yoann-mille/EpiCom.git
 ** 
@@ -7,11 +7,11 @@
 ** Email   <yoann.mille@epitech.net>
 ** 
 ** Started on  Mon Apr 21 18:49:51 2014 yoann mille
-** Last update Wed Apr 23 14:18:13 2014 yoann mille
+** Last update Wed Jun 18 16:39:59 2014 yoann mille
 */
 
 var express = require('express')
-, routes = require('./routes')
+, routes = require('./libs/routes')
 , http = require('http')
 , path = require('path')
 , omx = require('omxcontrol')
