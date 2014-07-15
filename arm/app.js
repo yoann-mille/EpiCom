@@ -15,7 +15,7 @@ var express = require('express')
 , http = require('http')
 , path = require('path')
 //, omx = require('omxcontrol')
-, vlc = require('./libs/utils/vlc')
+, vlc = require('./libs/utils/vlcControler')
 , io = require("socket.io");
 
 var app = express();
@@ -57,21 +57,19 @@ ioServer.sockets.on('connection', function (socket) {
     /****************************/
     socket.on('play video', function (file) {
 	console.log('[server] Emit : PLAY VIDEO\n\tFILE : ', file);
-//	omx.start(file);
-	vlc.play(file);
+	vlc.launch(file);
     });
     socket.on('stop video', function () {
 	console.log('[server] Emit : STOP VIDEO');
 	vlc.quit();
-//	omx.quit();
     });
     socket.on('pause video', function () {
 	console.log('[server] Emit : PAUSE VIDEO');
-	omx.pause();
+	vlc.pause();
     });
     socket.on('unpause video', function () {
 	console.log('[server] Emit : UNPAUSE VIDEO');
-	omx.pause();
+	vlc.pause();
     });
 
     /************************************/
