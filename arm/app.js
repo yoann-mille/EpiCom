@@ -7,14 +7,13 @@
 ** Email   <yoann.mille@epitech.net>
 ** 
 ** Started on  Mon Apr 21 18:49:51 2014 yoann mille
-** Last update Thu Jun 19 14:11:56 2014 yoann mille
+** Last update Wed Jul 16 11:02:03 2014 yoann mille
 */
 
 var express = require('express')
 , routes = require('./libs/routes')
 , http = require('http')
 , path = require('path')
-//, omx = require('omxcontrol')
 , vlc = require('./libs/utils/vlcControler')
 , io = require("socket.io");
 
@@ -63,19 +62,19 @@ ioServer.sockets.on('connection', function (socket) {
 	console.log('[server] Emit : STOP VIDEO');
 	vlc.quit();
     });
-    socket.on('pause video', function () {
+/*    socket.on('pause video', function () {
 	console.log('[server] Emit : PAUSE VIDEO');
 	vlc.pause();
     });
     socket.on('unpause video', function () {
 	console.log('[server] Emit : UNPAUSE VIDEO');
 	vlc.pause();
-    });
+    });*/
 
     /************************************/
     /*		Presentation		*/
     /************************************/
-    socket.on('pause presentation', function () {
+    socket.on('pause presentation', function (file) {
 	console.log('[server] Emit : PAUSE PRESENTATION');
 	ioPres.sockets.emit('pause');
     });
@@ -85,7 +84,9 @@ ioServer.sockets.on('connection', function (socket) {
     });
     socket.on('play presentation', function (file) {
 	console.log('[server] Emit : PLAY PRESENTATION ' + file);
-	//	ioPres.sockets.emit('play');
+	vlc.quit();
+	app.get('/' + file, routes.presentation);
+	ioPres.sockets.emit('play', file);
     });
     socket.on('stop presentation', function () {
 	console.log('[server] Emit : STOP PRESENTATION');

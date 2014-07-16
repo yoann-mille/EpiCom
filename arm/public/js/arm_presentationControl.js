@@ -1,4 +1,8 @@
-var socket = io.connect("http://localhost:3000");
+var socket = io.connect();
+
+socket.on('play', function (filec) {
+    document.location.href = '/' + file + 'name?' + file;
+});
 
 socket.on('pause', function () {
     Reveal.togglePause();
