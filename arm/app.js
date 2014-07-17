@@ -90,6 +90,6 @@ ioServer.sockets.on('connection', function (socket) {
     });
     socket.on('stop presentation', function () {
 	console.log('[server] Emit : STOP PRESENTATION');
-	//	ioPres.sockets.emit('pause');
+	ioPres.sockets.emit('stop');
     });
 });

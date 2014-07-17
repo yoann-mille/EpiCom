@@ -10,10 +10,10 @@
 ** Last update Wed Jul 16 10:54:01 2014 yoann mille
 */
 
-var path = require('../utils/config');
+var path = require('../utils/config').path;
 
 exports.index = function(req, res){
-    res.render('arm_index', { title: 'Express' });
+    res.render('arm_Epitech');
 };
 
 exports.presentation = function (req, res) {
