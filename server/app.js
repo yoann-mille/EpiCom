@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue Apr 22 09:51:40 2014 yoann mille
-** Last update Tue Jun 10 10:22:50 2014 yoann mille
+** Last update Fri Jul 18 17:08:30 2014 yoann mille
 */
 
 var express = require('express')
@@ -27,7 +27,7 @@ require('./libs/utils/status');
 var app = express();
 
 app.configure(function(){
-    app.set('port', process.env.PORT || 3000);
+    app.set('port', process.env.PORT || config.server.port);
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.use(express.favicon());
@@ -45,19 +45,36 @@ app.configure('development', function(){
     app.use(express.errorHandler());
 });
 
+var server = http.createServer(app).listen(app.get('port'), function(){
+    console.log("Express server listening on port " + app.get('port'));
+});
+
+/* socket for administration interface */
+var admSocket = io.listen(server);
+
+/* socket for RPI communication */
+var clientio  = require('socket.io-client');
+var client    = clientio.connect('http://10.18.207.249:4242');
+
 db.init(config.sql.user, config.sql.password, config.sql.database, config.sql.host);
 
 app.get('/', routes.index);
 
 app.get(	'/login', routes.login);
 
-app.get(	'/video', routes.video);
+app.get(	'/upload', routes.upload);
+app.post(	'/upload', media.upload, routes.upload);
+
+app.post(	'/playURL', media.playURL.bind({client: client}), routes.upload);
 
 app.get(	'/presentation', routes.presentation);
 app.post(	'/presentation', presentation.createPres, presentation.screenshot.bind({app: app}), routes.viewPres);
-//app.get(	'/updatePresentation', presentation.updatePresentation, routes.updatePresentation);
+app.get(	'/updatePresentation', presentation.updatePresentation, routes.updatePresentation);
+app.post(	'/updatePresentation', presentation.deletePres, presentation.createPres, presentation.screenshot.bind({app: app}), routes.viewPres);
 
 app.get(	'/media', media.list, routes.media);
+
+app.get(	'/playlist', media.list, routes.playlist);
 
 app.use(function(req, res){
     res.status(404).render('404', {title: '404'});
@@ -76,27 +93,16 @@ app.get(	'/video', routes.authentification.session, routes.video);
 app.get(	'/video', routes.authentification.session, routes.presentation);
 */
 
-var server = http.createServer(app).listen(app.get('port'), function(){
-    console.log("Express server listening on port " + app.get('port'));
+client.on('connection', function () {
+    console.log('Connection on client : ' + client);
 });
-
-/* socket for administration interface */
-var admSocket = io.listen(server);
-
-/* socket for RPI communication */
-var clientio  = require('socket.io-client');
-var client    = clientio.connect('http://10.18.207.129:4242');
-
-/* files for tests */
-var file = new Array("/home/pi/stage/media/videoTest.mp4", "/home/pi/stage/media/videoTest.mp4");
 
 admSocket.set('log level', 1);
 
 admSocket.sockets.on('connection', function (socket) {
     /*** Video ***/
-//    socket.on('get newPres', routes.media.newPres);
 
-    socket.on('play video', video.play.bind(null, client, file));
+    socket.on('play video', video.play.bind(null, client));
     socket.on('stop video', video.stop.bind(null, client));
     socket.on('pause video', video.pause.bind(null, client));
     socket.on('unpause video', video.unpause.bind(null, client));
@@ -109,7 +115,11 @@ admSocket.sockets.on('connection', function (socket) {
 
     socket.on('checkPresNameExist', presentation.checkPresNameExist.bind(null, socket));
 
+    socket.on('previewPres', function (media, cb) {
+	app.get('/' + media, routes.previewPres);
+	cb(media);
+    });
     /*** Media ***/
     socket.on('deleteMedia', media.deleteMedia);
-    socket.on('updatePresentation', presentation.updatePresentation.bind({app: app}));
+//    socket.on('updatePresentation', presentation.updatePresentation.bind({app: app}));
 });

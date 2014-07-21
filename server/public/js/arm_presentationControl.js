@@ -7,10 +7,10 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:27:16 2014 yoann mille
-** Last update Tue May  6 11:27:22 2014 yoann mille
+** Last update Mon Jul  7 16:01:57 2014 yoann mille
 */
 
-var socket = io.connect("http://localhost:3000");
+var socket = io.connect();
 
 socket.on('pause', function () {
     Reveal.togglePause();

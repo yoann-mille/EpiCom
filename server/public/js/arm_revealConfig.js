@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:27:35 2014 yoann mille
-** Last update Tue May  6 11:27:42 2014 yoann mille
+** Last update Fri Jul 18 10:16:49 2014 yoann mille
 */
 
 Reveal.initialize({
@@ -18,7 +18,7 @@ Reveal.initialize({
     progress: false,
 
     // Display the page number of the current slide
-    slideNumber: false,
+    slideNumber: true,
 
     // Push each slide change to the browser history
     history: false,
@@ -51,7 +51,7 @@ Reveal.initialize({
     // Number of milliseconds between automatically proceeding to the
     // next slide, disabled when set to 0, this value can be overwritten
     // by using a data-autoslide attribute on your slides
-    autoSlide: 2000,
+    autoSlide: 0,//2000,
 
     // Stop auto-sliding after user input
     autoSlideStoppable: false,

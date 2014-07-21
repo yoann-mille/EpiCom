@@ -7,10 +7,11 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Thu May 15 17:33:57 2014 yoann mille
-** Last update Mon May 19 11:36:56 2014 yoann mille
+** Last update Fri Jul 18 17:14:41 2014 yoann mille
 */
 
 var listToDel = [];
+var socket = null;
 
 function hideListMedia (nameLi) {
     listToDel.push(nameLi);
@@ -18,8 +19,26 @@ function hideListMedia (nameLi) {
     li.className = 'hidden';
 }
 
+function previewPres (media) {
+    if (socket === null)
+	socket = io.connect();
+
+    socket.on('disconnect', function () {
+	socket = null;
+    });
+    socket.emit('previewPres', media.replace('.png', ''), function (name) {
+	console.log('titi?');
+	document.location.href = '/' + name + '?name=' + name;
+    });
+}
+
 function deleteFile (media) {
-    var socket = io.connect('');
+    if (socket === null)
+	socket = io.connect();
+
+    socket.on('disconnect', function () {
+	socket = null;
+    });
     socket.emit('deleteMedia', media, listToDel, function (isOk, media) {
 	while (listToDel.length) {
 	    listToDel.pop();
@@ -40,6 +59,19 @@ function deleteFile (media) {
 }
 
 function updatePresentation (name) {
-    var socket = io.connect('');
-    socket.emit('updatePresentation', name);
+    document.location.href = '/updatePresentation?name=' + name;
+}
+
+function playURL() {
+    var url = document.getElementById('url').value;
+
+    if (url.search('youtube.com/watch\\?v=') != -1)
+	url = url.replace('youtube.com/watch?v=', 'youtube.com/embed/');
+    if (url.search('dailymotion.com/video/') != -1)
+	url = url.replace('dailymotion.com/video/', 'dailymotion.com/embed/video/');
+    if (url.search('\\?') == -1)
+	url += '?';
+    else
+	url += '&';
+    document.location.href = url + 'rel=0&autoplay=1';
 }

@@ -7,20 +7,47 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:29:21 2014 yoann mille
-** Last update Tue May  6 11:29:27 2014 yoann mille
+** Last update Mon Jul  7 16:03:21 2014 yoann mille
 */
 
-var socket = io.connect('');
+var socket = null;
 
-function playVideo () {
-    socket.emit('play video', {toto: "salut", titi: "connard"});
+function playVideo (file) {
+    if (socket === null)
+	socket = io.connect();
+
+    socket.on('disconnect', function () {
+	socket = null;
+    });
+    socket.emit('play video', {file: file});
 }
+
 function stopVideo () {
+    if (socket === null)
+	socket = io.connect();
+
+    socket.on('disconnect', function () {
+	socket = null;
+    });
     socket.emit('stop video');
 }
+
 function pauseVideo () {
+    if (socket === null)
+	socket = io.connect();
+
+    socket.on('disconnect', function () {
+	socket = null;
+    });
     socket.emit('pause video');
 }
+
 function unpauseVideo () {
+    if (socket === null)
+	socket = io.connect();
+
+    socket.on('disconnect', function () {
+	socket = null;
+    });
     socket.emit('unpause video');
 }

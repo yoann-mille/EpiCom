@@ -7,10 +7,11 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:21:03 2014 yoann mille
-** Last update Tue May 20 17:16:14 2014 yoann mille
+** Last update Wed Jul 16 15:18:26 2014 yoann mille
 */
 
 var path = require('./config').path;
+var saveName = '';
 
 module.exports = {
 
@@ -21,8 +22,8 @@ module.exports = {
     /****************************************************/
 
     play : function (client, file) {
-	console.log("button play presentation clicked.");
-	client.emit('play presentation', file);
+	console.log("button play presentation clicked file : " + file);
+	client.emit('play presentation', file.file.replace('.png', ''));
     },
 
     stop : function (client) {
@@ -73,9 +74,7 @@ module.exports = {
 	fileName = dir + fileName;
 
 	/************************************************/
-	/*						*/
 	/*	Fill buff with the jade instruction	*/
-	/*						*/
 	/************************************************/
 	var buff = 'include arm_layoutTop\n\n';
 	buff += 'div.reveal\n';
@@ -192,18 +191,47 @@ module.exports = {
     /*                                                  */
     /****************************************************/
 
-    updatePresentation: function (req, res) {
+    updatePresentation: function (req, res, next) {
 	var fs = require('fs-extra');
+	var name = req.query.name;
+	saveName = name;
 	var file = fs.readFileSync(path.presentation + name.replace('.png', '.jade'), 'utf8');
+	var slides = [];
 	var lines = file.split('\n');
-	
+
 	var numLine = 0;
-	while (numLine < lines.length && lines[numLine].indexOf('\t\tsection', 0) != 0) {
+	while (numLine < lines.length) {
+	    while (numLine < lines.length && lines[numLine].indexOf('\t\tsection', 0) != 0) {
+		numLine++;
+	    }
 	    numLine++;
+	    var slide = '';
+	    while (numLine < lines.length && lines[numLine].indexOf('\t\t\t', 0) == 0) {
+		slide += lines[numLine].replace('\t\t\t', '');
+		slide += '\n';
+		numLine++;
+	    }
+	    if (numLine < lines.length)
+		slides.push(slide);
 	}
-	numLine++;
-	while (numLine < lines.length) {	    
-	    i++;
+	if (numLine > lines.length) {
+	    req.param.slides = slides;
+	    next();
 	}
+    },
+
+    deletePres: function (req, res, next) {
+	var fs = require('fs-extra');
+	var name = req.body.name;
+
+	fs.remove(path.miniature + saveName, function (err) {
+	    if (err)
+		console.log("Error on remove file : " + path.miniature + saveName + "\n" + err);
+	    fs.remove(path.presentation + saveName.replace('.png', '.jade'), function (err) {
+		if (err)
+		    console.log("Error on remove file : " + path.presentation + saveName.replace('.png', '.jade') + "\n" + err);
+		next();
+	    });
+	});
     }
 };

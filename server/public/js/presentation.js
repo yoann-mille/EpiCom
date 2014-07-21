@@ -7,31 +7,50 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:28:17 2014 yoann mille
-** Last update Tue May 20 16:58:17 2014 yoann mille
+** Last update Wed Jul 16 16:17:01 2014 yoann mille
 */
 
 var socket = null;
 
-function playPres () {
+function playPres (file) {
     if (socket === null)
-	socket = io.connect('');
-    socket.emit('play presentation');
+	socket = io.connect();
+
+    socket.on('disconnect', function () {
+	socket = null;
+    });
+    socket.emit('play presentation', {file: file});
 }
+
 function stopPres () {
     if (socket === null)
-	socket = io.connect('');
+	socket = io.connect();
+
+    socket.on('disconnect', function () {
+	socket = null;
+    });
     socket.emit('stop presentation');
 }
+
 function pausePres () {
     if (socket === null)
-	socket = io.connect('');
+	socket = io.connect();
+
+    socket.on('disconnect', function () {
+	socket = null;
+    });
     socket.emit('pause presentation');
 }
+/*
 function unpausePres () {
     if (socket === null)
-	socket = io.connect('');
+	socket = io.connect();
+
+    socket.on('disconnect', function () {
+	socket = null;
+    });
     socket.emit('unpause presentation');
-}
+}*/
 
 function removeSlide (slide) {
     var form = document.getElementById('form pres');
@@ -66,8 +85,13 @@ function addDivSlide () {
 function checkPresNameExist () {
     var inputPresName = document.getElementById('presName');
     var presName = inputPresName.value;
+
     if (socket === null)
-	socket = io.connect('');
+	socket = io.connect();
+    
+    socket.on('disconnect', function () {
+	socket = null;
+    });
     socket.emit('checkPresNameExist', {presName: presName});
     socket.on('checkPresNameExist', function (data) {
 	if (data === true) {

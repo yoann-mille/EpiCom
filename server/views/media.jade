@@ -23,7 +23,10 @@ body
             li.media(id= video)
               button.btn.btn-default.btn-delete-mini.pull-right(type='button', onclick='hideListMedia(\'' + video + '\')')
                 span.glyphicon.glyphicon-remove
-              img.pull-left.media-object.img-rounded(src='media/video/' + video, height='80', width='80');
+              button.btn.btn-default.pull-right(type='button', onclick='playVideo(\'' + video + '\')') Play
+              video.pull-left(width='200', height='140', controls)
+                source(src='media/video/' + video, type='video/mp4')
+                source(src='media/video/' + video, type='video/ogg')
               div.media-body
                 h4.media-heading=video
     if (media === 'presentations')
@@ -33,11 +36,21 @@ body
             li.media(id= mini)
               button.btn.btn-default.btn-delete-mini.pull-right(type='button', onclick='hideListMedia(\'' + mini + '\')')
                 span.glyphicon.glyphicon-remove
+              button.btn.btn-default.pull-right(type='button', onclick='previewPres(\'' + mini + '\')') Preview
+              button.btn.btn-default.pull-right(type='button', onclick='playPres(\'' + mini + '\')') Play
               button.btn.btn-default.btn-update-mini.pull-right(type='button', onclick='updatePresentation(\'' + mini + '\')') Modifier
               img.pull-left.media-object.img-rounded(src='media/miniature/' + mini, height='80', width='80');
               div.media-body
                 h4.media-heading=mini
-    button.btn.btn-lg.btn-primary.pull-right(type='button', onclick='deleteFile(\'' + media + '\')') Sauvegarder
+  
+    button.btn.btn-lg.btn-primary.pull-right.btn-media(type='button', onclick='deleteFile(\'' + media + '\')') Sauvegarder
+    if (media === 'videos')
+      button.btn.btn-lg.btn-primary.pull-right.btn-media(type='button', onclick='stopVideo()') Stop
+    if (media === 'presentations')
+      button.btn.btn-lg.btn-primary.pull-right.btn-media(type='button', onclick='stopPres()') Stop
+      button.btn.btn-lg.btn-primary.pull-right.btn-media(type='button', onclick='pausePres()') Pause
 include layoutBottom
 script(src="components/bootstrap/js/tab.js")
 script(src="js/media.js")
+script(src="js/video.js")
+script(src="js/presentation.js")

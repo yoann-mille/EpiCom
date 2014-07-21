@@ -1,0 +1,27 @@
+/*
+** playlist.css for Epicom  in /server/public/css
+** 
+** Git project https://github.com/yoann-mille/EpiCom.git
+** 
+** Made by yoann mille
+** Email   <yoann.mille@epitech.eu>
+** 
+** Started on  Tue Jun 17 10:24:20 2014 yoann mille
+** Last update Tue Jun 17 14:37:42 2014 yoann mille
+*/
+
+.container.container-playlist {
+    max-width: 600px;
+    margin-right: none;
+}
+
+.container.container-drop {
+    min-height: 200px;
+    max-width: 570px;
+    border: 1px solid #ccc;
+    border-radius: 4px
+}
+
+.container.container-media {
+    max-width: 500px;
+}

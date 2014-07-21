@@ -1,0 +1,26 @@
+include layoutTop
+
+link(href="components/bootstrap/dist/css/docs.min.css", rel="stylesheet")
+link(href="css/upload.css", rel="stylesheet")
+
+body
+  include navbar
+  div.container
+    div.container.container-upload.pull-left
+      if (isUpload === "KO")
+        div.alert.alert-danger.alert-upload Fichier non sauvegardé
+      if (isUpload === "OK")
+        div.alert.alert-success.alert-upload Fichier sauvegardé
+      form.form-upload(method='POST', action='/upload', enctype='multipart/form-data')
+        h2.form-upload-heading Enregistrer des fichiers
+        div.alert.alert-info.alert-upload Seul les videos, musiques et images sont autorisés
+        input.form-control(id='file', type='file', name='file', multiple, required)
+        button.btn.btn-lg.btn-primary(type='submit') Sauvegarder
+    div.container.container-upload.pull-right
+      form.form-upload(method='POST', action='/playUrl')
+        h2.form-upload-heading Lire une url
+        div.alert.alert-info.alert-upload Seul les videos Youtube
+        input.form-control(id='url', type='url', name='playUrl', required)
+        button.btn.btn-lg.btn-primary(type='submit') Lire
+
+include layoutBottom

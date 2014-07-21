@@ -1,5 +1,5 @@
 /*
-** login.css for EpiCom in /server/public/css
+** upload.css for EpiCom in /server/public/css
 ** 
 ** Git project https://github.com/yoann-mille/EpiCom.git
 ** 
@@ -7,8 +7,12 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:24:21 2014 yoann mille
-** Last update Thu Jul 17 15:11:15 2014 yoann mille
+** Last update Fri Jul 18 11:41:55 2014 yoann mille
 */
+
+.container.container-upload {
+    max-width: 450px;
+}
 
 body {
     padding-top: 40px;
@@ -16,42 +20,44 @@ body {
     background-color: #eee;
 }
 
-.alert-login {
-    max-width: 330px;
+.alert-upload {
+    max-width: 400px;
     padding: 15px;
-    margin: 0 auto;
+    margin-bottom: 20px;
 }
 
-.form-login {
-    max-width: 330px;
+.form-upload {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-width: 400px;
     padding: 15px;
-    margin: 0 auto;
+    margin: 25px 0;
 }
-.form-login .form-login-heading,
-.form-login .checkbox {
-    margin-bottom: 10px;
+
+.form-upload .form-upload-heading,
+.form-upload .checkbox {
+    margin-bottom: 30px;
 }
-.form-login .checkbox {
-    font-weight: normal;
-}
-.form-login .form-control {
+
+.form-upload .form-control {
     position: relative;
     height: auto;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 10px;
+    margin-bottom: 15px;
     font-size: 16px;
 }
-.form-login .form-control:focus {
+.form-upload .form-control:focus {
     z-index: 2;
 }
-.form-login input[type="email"] {
+.form-upload input[type="email"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
-.form-login input[type="password"] {
+.form-upload input[type="password"] {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;

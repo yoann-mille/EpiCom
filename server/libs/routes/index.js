@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:16:35 2014 yoann mille
-** Last update Thu May 15 10:59:31 2014 yoann mille
+** Last update Fri Jul 18 14:11:14 2014 yoann mille
 */
 
 var request = require('request');
@@ -28,12 +28,16 @@ module.exports = function() {
 
 	media: function(req, res) {
 	    var files = req.param.files;
-	    res.render('media', {title: 'Media', videos: files.video, minis: files.mini, imgs: files.img, media: req.query.media});
-	    
+	    res.render('media', {title: 'Media', videos: files.video, minis: files.mini, imgs: files.img, media: req.query.media});	    
 	},
 
-	video: function(req, res) {
-	    res.render('video', {title: 'Video'});
+	playlist: function(req, res) {
+	    var files = req.param.files;
+	    res.render('playlist', {title: 'Playlist', videos: files.video, minis: files.mini, imgs: files.img});	    
+	},
+	
+	upload: function(req, res) {
+	    res.render('upload', {title: 'Upload', isUpload: req.param.isUpload});
 	},
 
 	presentation: function(req, res) {
@@ -43,10 +47,22 @@ module.exports = function() {
 	    res.render('presentation', {title: 'Presentation', fileExist: fileExist});
 	},
 
+	updatePresentation: function(req, res) {
+	    res.render('updatePresentation', {title: 'Presentation', presName: req.query.name.replace('.png', ''),  slides: req.param.slides});
+	},
+
 	viewPres: function (req, res) {
 	    var fileName = req.body.name.replace(' ', '_');
 	    fileName = 'arm_' + fileName;
+	    console.log(fileName);
 	    res.redirect(fileName);
+	},
+
+	previewPres: function (req, res) {
+	    var filename = req.query.name;
+	    var path = config.path;
+
+	    res.render(path.presentation + filename);
 	},
 
 	/*

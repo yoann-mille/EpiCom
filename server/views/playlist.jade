@@ -1,0 +1,49 @@
+include layoutTop
+
+link(href="css/playlist.css", rel="stylesheet")
+
+body
+  div.container
+    include navbar
+    // List media
+    div.container.container-media.pull-left(id='media')
+      ul.nav.nav-tabs
+        li.active
+          a(href='#video', data-toggle='tab') Videos
+        li
+          a(href='#presentation', data-toggle='tab') Presentations
+
+      div.tab-content
+        div.tab-pane.active(id='video')
+          ul.media-list
+            each video in videos
+              li.media(id= video, draggable='true', ondragstart='drag(event)')
+                video.pull-left(width='200', height='140', controls)
+                  source(src='media/video/' + video, type='video/mp4')
+                  source(src='media/video/' + video, type='video/ogg')
+                div.media-body
+                  h4.media-heading=video
+        div.tab-pane(id='presentation')
+          ul.media-list
+            each mini in minis
+              li.media(id= mini, draggable='true', ondragstart='drag(event)')
+                img.pull-left.media-object.img-rounded(src='media/miniature/' + mini, height='80', width='80');
+                div.media-body
+                  h4.media-heading=mini
+    div.container.container-playlist.pull-right(id='form playlist')
+      form(method='POST', action='/playlist')
+        h2 Créer une playlist
+        input.form-control(id='playlistName', type='text', placeholder='Nom', name='name', required)
+        table.table.table-bordered.table-striped(id='table list', ondrop='drop(event)', ondragover='allowDrop(event)')
+          tr
+            th Fichier
+            th Type
+            th 
+          tr
+            td
+            td
+            td
+        button.btn.btn-lg.btn-primary(type='submit') Sauvegarder
+
+include layoutBottom
+script(src='js/playlist.js')

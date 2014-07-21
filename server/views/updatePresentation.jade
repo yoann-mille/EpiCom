@@ -22,16 +22,16 @@ body
         p img nom_de_l_image.jpg
       img.media-object(src='img/exemple_slide.png', height='250', width='300');
     div.container.container-presentation.pull-right(id='presContainer')
-      form.form-pres(id='form pres', method='POST', action='/presentation')
-        h2.form-pres-heading Créez une présentation
+      form.form-pres(id='form pres', method='POST', action='/updatePresentation')
+        h2.form-pres-heading Modifier une présentation
         input.form-control(id='presName', type='text', placeholder='Nom', name='name', value=presName, disable)
         each slide, i in slides
-          div(id=slide)
+          div(id=i)
             h3.form-pres-heading.form-pres-headin-slide Slide
             if i
-              button.btn.btn-default.btn-pres-new-slide(type='button', onclick='removeSlide(' + slide + ')')
+              button.btn.btn-default.btn-pres-new-slide(type='button', onclick='removeSlide(' + i + ')')
                 span.glyphicon.glyphicon-remove
-            textarea.form-control(rows="10", placeholder='Ecrivez ici le contenu de votre slide', name='slide', required)
+            textarea.form-control(rows="10", placeholder='Ecrivez ici le contenu de votre slide', name='slide', required)=slide
         button.btn.btn-lg.btn-primary(type='button', onclick='addDivSlide()', id='button add slide') Nouvelle slide
         button.btn.btn-lg.btn-primary.btn-pres-save(type='submit') Sauvegarder
 
