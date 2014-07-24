@@ -37,6 +37,8 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 
+app.get('/playURL', routes.playURL);
+
 var server = http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
 });
@@ -91,5 +93,14 @@ ioServer.sockets.on('connection', function (socket) {
     socket.on('stop presentation', function () {
 	console.log('[server] Emit : STOP PRESENTATION');
 	ioPres.sockets.emit('stop');
+    });
+
+    /************************************/
+    /*		Direct Link		*/
+    /************************************/
+    socket.on('playURL', function (url) {
+	console.log('[server] Emit : PLAY URL');
+	vlc.quit();
+	ioPres.sockets.emit('playURL', url);
     });
 });

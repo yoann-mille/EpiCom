@@ -16,6 +16,10 @@ exports.index = function(req, res){
     res.render('arm_Epitech');
 };
 
+exports.playURL = function (req, res) {
+    res.render('arm_playURL', {playURL: req.query.playURL});
+};
+
 exports.presentation = function (req, res) {
     res.render(path.presentation + req.query.name);
 };
