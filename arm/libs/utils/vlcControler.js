@@ -26,11 +26,11 @@ function vlc(mapper) {
 
 vlc.express = function(req,res,next) {
     if (req.path.indexOf(DEFAULT_PATH) === 0) {
-        //replace + and decode                                                                                                                               
+        //replace + and decode
         path = decodeURIComponent(req.path.replace(/\+/g, ' '));
-        //remove leading and trailing /                                                                                                                      
+        //remove leading and trailing
         path = path.replace(/^\/|\/$/g,'');
-        //split and remove leading path                                                                                                                      
+        //split and remove leading path
         var parts = path.split('/');
         parts.shift();
         var command = parts.shift();
@@ -41,7 +41,7 @@ vlc.express = function(req,res,next) {
             } else {
                 vlc[command].apply(this,parts);
             }
-            //prevent anything else from being served from this subpath                                                                                      
+            //prevent anything else from being served from this subpath
             res.end('executed '+command);
             return;
         }
@@ -61,7 +61,7 @@ vlc.start = function(fn) {
     }
 
     function cb(fn) {
-        //        console.log(fn);                                                                                                                           
+        //        console.log(fn);
         if (fn.length != 0) {
 	    var file = fn.pop();
             proc = exec('cvlc -f  media/video/"' + file + '" < ' + pipe, function(error, stdout, stderr) {

@@ -15,7 +15,8 @@ var express = require('express')
 , http = require('http')
 , path = require('path')
 , vlc = require('./libs/utils/vlcControler')
-, io = require("socket.io");
+, io = require('socket.io')
+, playlist = require('./libs/utils/playlist');
 
 var app = express();
 
@@ -102,5 +103,13 @@ ioServer.sockets.on('connection', function (socket) {
 	console.log('[server] Emit : PLAY URL');
 	vlc.quit();
 	ioPres.sockets.emit('playURL', url);
+    });
+
+    /************************************/
+    /*		Direct Link		*/
+    /************************************/
+    socket.on('playURL', function (file) {
+	console.log('[server] Emit : PLAY PLAYLIST -> ', file);
+	playlist.start(app, ioPres, vlc, file);
     });
 });
