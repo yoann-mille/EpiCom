@@ -29,5 +29,6 @@ config.path.images = config.path.media + "image/";
 config.path.video = config.path.media + "video/";
 config.path.miniature = config.path.media + "miniature/";
 config.path.presentation = config.path.media + "presentation/";
+config.path.playlist = config.path.media + "playlist/";
 
 module.exports = config;

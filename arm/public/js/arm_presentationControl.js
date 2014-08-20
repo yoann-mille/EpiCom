@@ -20,3 +20,8 @@ socket.on('stop', function () {
     console.log('quit');
     document.location.href = '/';
 });
+
+socket.on('playURL', function (url) {
+    console.log('playURL');
+    document.location.href = '/playURL?playURL=' + url;
+});
