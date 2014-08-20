@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:21:03 2014 yoann mille
-** Last update Wed Jul 16 15:18:26 2014 yoann mille
+** Last update Wed Aug 20 14:20:24 2014 yoann mille
 */
 
 var path = require('./config').path;
@@ -22,22 +22,18 @@ module.exports = {
     /****************************************************/
 
     play : function (client, file) {
-	console.log("button play presentation clicked file : " + file);
 	client.emit('play presentation', file.file.replace('.png', ''));
     },
 
     stop : function (client) {
-	console.log("button stop presentation clicked.");
 	client.emit('stop presentation');
     },
 
     pause : function (client) {
-	console.log("button pause presentation clicked.");
 	client.emit('pause presentation');
     },
 
     unpause : function (client) {
-	console.log("button unpause presentation clicked.");
 	client.emit('unpause presentation');
     },
 
@@ -52,6 +48,7 @@ module.exports = {
 	var fs = require('fs-extra');
 	var dir = path.presentation;
 	var name = data.presName;
+
 	name = name.replace(' ', '_');
 	name = 'arm_' + name + '.jade';
 	name = dir + name;
@@ -194,17 +191,17 @@ module.exports = {
     updatePresentation: function (req, res, next) {
 	var fs = require('fs-extra');
 	var name = req.query.name;
-	saveName = name;
 	var file = fs.readFileSync(path.presentation + name.replace('.png', '.jade'), 'utf8');
 	var slides = [];
 	var lines = file.split('\n');
-
 	var numLine = 0;
+
 	while (numLine < lines.length) {
 	    while (numLine < lines.length && lines[numLine].indexOf('\t\tsection', 0) != 0) {
 		numLine++;
 	    }
 	    numLine++;
+
 	    var slide = '';
 	    while (numLine < lines.length && lines[numLine].indexOf('\t\t\t', 0) == 0) {
 		slide += lines[numLine].replace('\t\t\t', '');
@@ -224,12 +221,12 @@ module.exports = {
 	var fs = require('fs-extra');
 	var name = req.body.name;
 
-	fs.remove(path.miniature + saveName, function (err) {
+	fs.remove(path.miniature + name, function (err) {
 	    if (err)
-		console.log("Error on remove file : " + path.miniature + saveName + "\n" + err);
-	    fs.remove(path.presentation + saveName.replace('.png', '.jade'), function (err) {
+		console.log("Error on remove file : " + path.miniature + name + "\n" + err);
+	    fs.remove(path.presentation + name.replace('.png', '.jade'), function (err) {
 		if (err)
-		    console.log("Error on remove file : " + path.presentation + saveName.replace('.png', '.jade') + "\n" + err);
+		    console.log("Error on remove file : " + path.presentation + name.replace('.png', '.jade') + "\n" + err);
 		next();
 	    });
 	});

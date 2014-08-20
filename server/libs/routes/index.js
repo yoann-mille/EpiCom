@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:16:35 2014 yoann mille
-** Last update Tue Aug 19 14:50:31 2014 yoann mille
+** Last update Wed Aug 20 13:59:46 2014 yoann mille
 */
 
 var request = require('request');
@@ -78,11 +78,6 @@ module.exports = function() {
 
 	code: function(req, res) {
             res.render('code', {admin: req.session.user.rank === 'admin'});
-	},
-
-	test: function(req, res){
-	    res.render('test');
 	}
-
     };
 }

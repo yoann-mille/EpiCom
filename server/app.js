@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue Apr 22 09:51:40 2014 yoann mille
-** Last update Tue Aug 19 14:49:15 2014 yoann mille
+** Last update Wed Aug 20 13:58:59 2014 yoann mille
 */
 
 var express = require('express')
@@ -54,7 +54,7 @@ var admSocket = io.listen(server);
 
 /* socket for RPI communication */
 var clientio  = require('socket.io-client');
-var client    = clientio.connect('http://10.18.207.211:4242');
+var client    = clientio.connect('http://10.18.207.255:4242');
 
 db.init(config.sql.user, config.sql.password, config.sql.database, config.sql.host);
 
@@ -123,6 +123,7 @@ admSocket.sockets.on('connection', function (socket) {
     /*** Media ***/
     socket.on('deleteMedia', media.deleteMedia);
 
-    socket.on('sentPlaylist', media.playlist);
-//    socket.on('updatePresentation', presentation.updatePresentation.bind({app: app}));
+    socket.on('sentPlaylist', function (name) {
+	client.emit('playPlaylist', name);
+    });
 });

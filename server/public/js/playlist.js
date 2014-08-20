@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue Jun 17 10:14:47 2014 yoann mille
-** Last update Tue Aug 19 15:32:42 2014 yoann mille
+** Last update Wed Aug 20 14:23:18 2014 yoann mille
 */
 
 var socket = null;
@@ -44,7 +44,6 @@ function drop(ev) {
     buttonDel.appendChild(glyphicon);
 
     row.insertCell(0).innerHTML = data;
-//    row.insertCell(1).innerHTML = document.getElementById(data).parentNode.parentNode.id;
 
     var cell = row.insertCell(1);
     cell.appendChild(buttonDel);

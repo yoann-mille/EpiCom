@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:20:26 2014 yoann mille
-** Last update Tue Aug 19 15:05:54 2014 yoann mille
+** Last update Wed Aug 20 14:16:17 2014 yoann mille
 */
 
 var path = require('./config').path;
@@ -26,7 +26,6 @@ module.exports = {
 	    dir = path.playlist;
 	for (var i = 0; i < list.length; i++) {
 	    var li = list[i];
-	    console.log(dir + list[i].replace('.png', '.jade'));
 	    fs.remove(dir + list[i].replace('.png', '.jade'), function (err) {
 		if (err) {
 		    console.log('Error on delet file ' + dir + list[i] + '\n\t'  + err);
@@ -179,6 +178,12 @@ module.exports = {
 	this.client.emit('playURL', url);
 	next();
     },
+
+
+    /************************************/
+    /*	    Create Playlist file 	*/
+    /*	    format m3u for VLC		*/
+    /************************************/
 
     playlist: function (data, cb) {
 	var name = data.name + '.m3u';
