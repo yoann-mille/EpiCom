@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Thu May 15 17:33:57 2014 yoann mille
-** Last update Fri Jul 18 17:14:41 2014 yoann mille
+** Last update Tue Aug 19 14:52:35 2014 yoann mille
 */
 
 var listToDel = [];
@@ -74,4 +74,8 @@ function playURL() {
     else
 	url += '&';
     document.location.href = url + 'rel=0&autoplay=1';
+}
+
+function updatePlaylist (name) {
+    document.location.href = '/updatePlaylist?plistname=' + name;
 }

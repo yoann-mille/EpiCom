@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:16:35 2014 yoann mille
-** Last update Fri Jul 18 14:11:14 2014 yoann mille
+** Last update Tue Aug 19 14:50:31 2014 yoann mille
 */
 
 var request = require('request');
@@ -28,12 +28,12 @@ module.exports = function() {
 
 	media: function(req, res) {
 	    var files = req.param.files;
-	    res.render('media', {title: 'Media', videos: files.video, minis: files.mini, imgs: files.img, media: req.query.media});	    
+	    res.render('media', {title: 'Media', videos: files.video, minis: files.mini, imgs: files.img, media: req.query.media, plists: files.playlist});	    
 	},
 
 	playlist: function(req, res) {
 	    var files = req.param.files;
-	    res.render('playlist', {title: 'Playlist', videos: files.video, minis: files.mini, imgs: files.img});	    
+	    res.render('playlist', {title: 'Playlist', videos: files.video, plist: req.param.plist, isOk: req.param.isOk});
 	},
 	
 	upload: function(req, res) {

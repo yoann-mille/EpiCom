@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue Apr 22 09:51:40 2014 yoann mille
-** Last update Fri Jul 18 17:08:30 2014 yoann mille
+** Last update Tue Aug 19 14:49:15 2014 yoann mille
 */
 
 var express = require('express')
@@ -54,7 +54,7 @@ var admSocket = io.listen(server);
 
 /* socket for RPI communication */
 var clientio  = require('socket.io-client');
-var client    = clientio.connect('http://10.18.207.249:4242');
+var client    = clientio.connect('http://10.18.207.211:4242');
 
 db.init(config.sql.user, config.sql.password, config.sql.database, config.sql.host);
 
@@ -72,9 +72,10 @@ app.post(	'/presentation', presentation.createPres, presentation.screenshot.bind
 app.get(	'/updatePresentation', presentation.updatePresentation, routes.updatePresentation);
 app.post(	'/updatePresentation', presentation.deletePres, presentation.createPres, presentation.screenshot.bind({app: app}), routes.viewPres);
 
-app.get(	'/media', media.list, routes.media);
+app.get(	'/media', media.readDirMini, media.readDirImages, media.readDirVideo, media.readDirPlaylist, media.readFilePlaylist, routes.media);
 
-app.get(	'/playlist', media.list, routes.playlist);
+app.get(	'/playlist', media.readDirVideo, routes.playlist);
+app.get(	'/updatePlaylist', media.readDirVideo, media.readFileUpdatePlaylist, routes.playlist);
 
 app.use(function(req, res){
     res.status(404).render('404', {title: '404'});
@@ -121,5 +122,7 @@ admSocket.sockets.on('connection', function (socket) {
     });
     /*** Media ***/
     socket.on('deleteMedia', media.deleteMedia);
+
+    socket.on('sentPlaylist', media.playlist);
 //    socket.on('updatePresentation', presentation.updatePresentation.bind({app: app}));
 });

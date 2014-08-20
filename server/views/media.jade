@@ -42,7 +42,22 @@ body
               img.pull-left.media-object.img-rounded(src='media/miniature/' + mini, height='80', width='80');
               div.media-body
                 h4.media-heading=mini
-  
+    if (media === 'playlists')
+      div.panel-group(id='accordion')
+        each plist in plists
+          div.panel.panel-default(id=plist.name)
+            div.panel-heading
+              button.btn.btn-default.btn-delete-mini.pull-right(type='button', onclick='hideListMedia(\'' + plist.name + '\')')
+                span.glyphicon.glyphicon-remove
+              button.btn.btn-default.pull-right(type='button', onclick='playPlaylist(\'' + plist.name + '\')') Play
+              button.btn.btn-default.btn-update-mini.pull-right(type='button', onclick='updatePlaylist(\'' + plist.name + '\')') Modifier
+              h4.panel-title
+                a(data-toggle='collapse', data-parent='#accordion', href='#collapseOne')=plist.name
+            div(id='collapseOne', class='panel-collapse collapse in')
+              div.panel-body
+                each row in plist.data
+                  p=row
+
     button.btn.btn-lg.btn-primary.pull-right.btn-media(type='button', onclick='deleteFile(\'' + media + '\')') Sauvegarder
     if (media === 'videos')
       button.btn.btn-lg.btn-primary.pull-right.btn-media(type='button', onclick='stopVideo()') Stop

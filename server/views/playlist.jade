@@ -10,8 +10,6 @@ body
       ul.nav.nav-tabs
         li.active
           a(href='#video', data-toggle='tab') Videos
-        li
-          a(href='#presentation', data-toggle='tab') Presentations
 
       div.tab-content
         div.tab-pane.active(id='video')
@@ -23,27 +21,32 @@ body
                   source(src='media/video/' + video, type='video/ogg')
                 div.media-body
                   h4.media-heading=video
-        div.tab-pane(id='presentation')
-          ul.media-list
-            each mini in minis
-              li.media(id= mini, draggable='true', ondragstart='drag(event)')
-                img.pull-left.media-object.img-rounded(src='media/miniature/' + mini, height='80', width='80');
-                div.media-body
-                  h4.media-heading=mini
+        
     div.container.container-playlist.pull-right(id='form playlist')
+      if (isOk == false)
+        div.alert.alert-danger.alert-upload Playlist non sauvegardée
+      if (isOk == true)
+        div.alert.alert-success.alert-upload Playlist sauvegardée
       form(method='POST', action='/playlist')
         h2 Créer une playlist
-        input.form-control(id='playlistName', type='text', placeholder='Nom', name='name', required)
+        input.form-control(id='playlistName', type='text', placeholder='Nom', name='name', required, value=plist.name)
         table.table.table-bordered.table-striped(id='table list', ondrop='drop(event)', ondragover='allowDrop(event)')
           tr
             th Fichier
-            th Type
-            th 
-          tr
-            td
-            td
-            td
-        button.btn.btn-lg.btn-primary(type='submit') Sauvegarder
+            th(style='width:60px;')
+          if (!plist)
+            tr
+              td
+              td
+          else
+            each vid, i in plist.data
+              if (i % 2 == 1)
+                tr
+                  td=vid
+                  td
+                    button.btn.btn-default(type='button', onclick='deleteRow(this);')
+                      span.glyphicon.glyphicon-remove
+        button.btn.btn-lg.btn-primary(type='button', onclick='sentPlaylist()') Sauvegarder
 
 include layoutBottom
 script(src='js/playlist.js')
