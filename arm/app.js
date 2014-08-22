@@ -15,8 +15,7 @@ var express = require('express')
 , http = require('http')
 , path = require('path')
 , vlc = require('./libs/utils/vlcControler')
-, io = require('socket.io')
-, playlist = require('./libs/utils/playlist');
+, io = require('socket.io');
 
 var app = express();
 
@@ -65,14 +64,14 @@ ioServer.sockets.on('connection', function (socket) {
 	console.log('[server] Emit : STOP VIDEO');
 	vlc.quit();
     });
-/*    socket.on('pause video', function () {
-	console.log('[server] Emit : PAUSE VIDEO');
-	vlc.pause();
+
+    /****************************/
+    /*		Playlist	*/
+    /****************************/
+    socket.on('playPlaylist', function (file) {
+	console.log('[server] Emit : PLAY PLAYLIST\n\tFILE : ', file);
+	vlc.launch(file);
     });
-    socket.on('unpause video', function () {
-	console.log('[server] Emit : UNPAUSE VIDEO');
-	vlc.pause();
-    });*/
 
     /************************************/
     /*		Presentation		*/
