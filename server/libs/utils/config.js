@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:20:14 2014 yoann mille
-** Last update Tue Jul 22 11:50:42 2014 yoann mille
+** Last update Fri Aug 22 15:24:48 2014 yoann mille
 */
 
 config = {};
@@ -34,5 +34,16 @@ config.path.playlist = config.path.media + "playlist/";
 config.server = {};
 config.server.url = '127.0.0.1';
 config.server.port = '3000';
+
+config.clients = {};
+config.clients.tv1 = 'http://10.18.207.255:4242';
+config.clients.tv2 = 'http://10.18.207.254:4242';
+config.clients.tv3 = 'http://10.18.207.253:4242';
+config.clients.tv4 = 'http://10.18.207.252:4242';
+config.clients.tv5 = 'http://10.18.207.251:4242';
+
+config.clients.path = {};
+config.clients.path.media = "/home/olimex/EpiCom/arm/media/";
+config.clients.path.video = config.clients.path.media + "video/";
 
 module.exports = config;

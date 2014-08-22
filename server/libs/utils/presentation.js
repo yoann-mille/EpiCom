@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:21:03 2014 yoann mille
-** Last update Wed Aug 20 14:20:24 2014 yoann mille
+** Last update Fri Aug 22 10:48:46 2014 yoann mille
 */
 
 var path = require('./config').path;
@@ -21,20 +21,28 @@ module.exports = {
     /*							*/
     /****************************************************/
 
-    play : function (client, file) {
-	client.emit('play presentation', file.file.replace('.png', ''));
+    play : function (clients, file) {
+	clients.forEach(function (client, i, array) {
+	    client.emit('play presentation', file.file.replace('.png', ''));
+	});
     },
 
-    stop : function (client) {
-	client.emit('stop presentation');
+    stop : function (clients) {
+	clients.forEach(function (client, i, array) {
+	    client.emit('stop presentation');
+	});
     },
 
-    pause : function (client) {
-	client.emit('pause presentation');
+    pause : function (clients) {
+	clients.forEach(function (client, i, array) {
+	    client.emit('pause presentation');
+	});
     },
 
-    unpause : function (client) {
-	client.emit('unpause presentation');
+    unpause : function (clients) {
+	clients.forEach(function (client, i, array) {
+	    client.emit('unpause presentation');
+	});
     },
 
     /****************************************************/

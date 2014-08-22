@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue May  6 11:20:26 2014 yoann mille
-** Last update Wed Aug 20 14:16:17 2014 yoann mille
+** Last update Fri Aug 22 15:38:48 2014 yoann mille
 */
 
 var path = require('./config').path;
@@ -91,6 +91,7 @@ module.exports = {
                 console.log(err);
 		req.param.files.plists = [];
             } else {
+		console.log(playlists);
 		req.param.files.plists = playlists;
 	    }
 	    next();
@@ -99,7 +100,7 @@ module.exports = {
 
     readFileUpdatePlaylist : function (req, res, next) {
 	var data = fs.readFileSync(path.playlist + req.query.plistname, {encoding: 'utf8'}).replace('#EXTM3U', '').split('\n');
-	console.log(data.length);
+
 	for (var j = 0; j < data.length; j++) {
 	    if (j % 2 == 0)
 		data[j] = '';
@@ -114,6 +115,8 @@ module.exports = {
 	var list = req.param.files.plists;
 
 	req.param.files.playlist = [];
+	if (list.length == 0)
+	    return next();
 	list.forEach(function (plist, i, array) {
 	    var data = fs.readFileSync(path.playlist + plist, {encoding: 'utf8'}).replace('#EXTM3U', '').split('\n');
 	    for (var j = 0; j < data.length; j++) {
@@ -141,8 +144,6 @@ module.exports = {
 	if (Array.isArray(files))
 	    tab = files;
 	for (var i = 0; i < tab.length; i++) {
-	    console.log('Tab[' + i + '] = ');
-	    console.log(tab[i]);
 	    folder = path.video;
 	    if (tab[i].type.indexOf('image', 0) == 0)
 		folder = path.images;
@@ -175,7 +176,9 @@ module.exports = {
 	else
 	    url += '&';
 	url += 'autoplay=1';
-	this.client.emit('playURL', url);
+	this.clients.forEach(function (client, i, array) {
+	    client.emit('playURL', url);
+	});
 	next();
     },
 
@@ -185,17 +188,21 @@ module.exports = {
     /*	    format m3u for VLC		*/
     /************************************/
 
-    playlist: function (data, cb) {
+    createPlaylist: function (data, cb) {
 	var name = data.name + '.m3u';
 	var tab = data.buff;
 	var fs = require('fs-extra');
 	var file = path.playlist + name;
 	var buff = '#EXTM3U\n';
+	var pathVideo = require('./config').clients.path.video;
+	console.log(pathVideo);
+
+	fs.removeSync(path.playlist + name, null);
 
 	tab.forEach(function (row, i, array) {
 	    
 	    buff += '#EXTINF:0,' + row + '\n';
-	    buff += path.video + row + '\n';
+	    buff += pathVideo + row + '\n';
 
 	    if (i + 1 == array.length) {
 		fs.outputFile(file, buff, function(err) {

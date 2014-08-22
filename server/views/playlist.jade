@@ -28,7 +28,10 @@ body
         div.alert.alert-success.alert-upload Playlist sauvegardée
       form(method='POST', action='/playlist')
         h2 Créer une playlist
-        input.form-control(id='playlistName', type='text', placeholder='Nom', name='name', required, value=plist.name)
+        if (plist)
+          input.form-control(id='playlistName', type='text', placeholder='Nom', name='name', required, value=plist.name)
+        else
+          input.form-control(id='playlistName', type='text', placeholder='Nom', name='name', required)
         table.table.table-bordered.table-striped(id='table list', ondrop='drop(event)', ondragover='allowDrop(event)')
           tr
             th Fichier
@@ -45,7 +48,7 @@ body
                   td
                     button.btn.btn-default(type='button', onclick='deleteRow(this);')
                       span.glyphicon.glyphicon-remove
-        button.btn.btn-lg.btn-primary(type='button', onclick='sentPlaylist()') Sauvegarder
+        button.btn.btn-lg.btn-primary(type='button', onclick='createPlaylist()') Sauvegarder
 
 include layoutBottom
 script(src='js/playlist.js')

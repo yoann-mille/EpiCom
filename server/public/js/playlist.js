@@ -7,7 +7,7 @@
 ** Email   <yoann.mille@epitech.eu>
 ** 
 ** Started on  Tue Jun 17 10:14:47 2014 yoann mille
-** Last update Wed Aug 20 14:23:18 2014 yoann mille
+** Last update Fri Aug 22 15:07:43 2014 yoann mille
 */
 
 var socket = null;
@@ -62,7 +62,7 @@ function deleteRow (button) {
     }
 }
 
-function sentPlaylist () {
+function createPlaylist () {
     if (socket === null)
 	socket = io.connect();
     
@@ -79,7 +79,7 @@ function sentPlaylist () {
 	buff.push(cells[0].innerHTML);
     }
 
-    socket.emit('sentPlaylist', {name: name, buff: buff}, function (isOk) {
+    socket.emit('createPlaylist', {name: name, buff: buff}, function (isOk) {
 	document.location.href = '/playlist?isOk=' + isOk;
     });
 }
