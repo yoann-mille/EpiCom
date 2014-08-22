@@ -62,7 +62,13 @@ vlc.start = function(fn) {
 
     function cb(fn) {
         //        console.log(fn);
-        if (fn.length != 0) {
+	if (Array.isArray(fn) == false) {
+	    console.log(fn);
+	    proc = exec('cvlc -f  media/playlist/"' + fn + '" < ' + pipe, function(error, stdout, stderr) {
+                console.log(stdout);
+	    });
+            exec('echo . > ' + pipe);
+	} else if (fn.length != 0) {
 	    var file = fn.pop();
             proc = exec('cvlc -f  media/video/"' + file + '" < ' + pipe, function(error, stdout, stderr) {
                 console.log(stdout);
